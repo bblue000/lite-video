@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @since 1.0
  */
-/*package*/ interface VideoWidgetBase {
+public interface VideoWidgetBase {
 
     Uri getUri();
 

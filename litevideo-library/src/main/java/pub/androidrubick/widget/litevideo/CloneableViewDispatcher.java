@@ -182,8 +182,17 @@ public class CloneableViewDispatcher {
         mCloneView = cloneView;
     }
 
+    /*package*/ interface CloneStateProvider {
+        boolean isCloneState() ;
+    }
+
+    private CloneStateProvider mCloneStateProvider;
+    /*package*/ void setCloneStateProvider(CloneStateProvider cloneStateProvider) {
+        mCloneStateProvider = cloneStateProvider;
+    }
+
     /*package*/ boolean isCloneState() {
-        return mSrcView.isCloneState();
+        return null == mCloneStateProvider ? false : mCloneStateProvider.isCloneState();
     }
 
     /*package*/ void setForceClone(boolean cloneable) {

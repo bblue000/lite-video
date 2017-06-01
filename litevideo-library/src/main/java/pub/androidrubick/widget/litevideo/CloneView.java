@@ -101,10 +101,6 @@ public class CloneView extends View {
      * Created by Yin Yong on 2017/5/27.
      */
     public interface CloneableView {
-        /**
-         * @return whether this {@link CloneableView} is in clone state (some methods should be dispatched to {@link CloneableViewDispatcher}) currently
-         */
-        boolean isCloneState() ;
 
         /**
          * @return a {@link CloneableViewDispatcher} of this  {@link CloneableView}

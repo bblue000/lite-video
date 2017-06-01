@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import pub.androidrubick.widget.litevideo.BaseVideoContainer;
+import pub.androidrubick.widget.litevideo.BaseCloneableVideoContainer;
 import pub.androidrubick.widget.litevideo.CloneView;
 import pub.androidrubick.widget.litevideo.VideoOverlay;
 
@@ -20,10 +20,10 @@ public class MainActivity extends FragmentActivity {
 
     private TextView tv;
     private Button btn;
-    private BaseVideoContainer baseVideoContainer;
+    private BaseCloneableVideoContainer cloneableVideoContainer;
     private CloneView cloneView;
     private VideoOverlay videoOverlay;
-    private BaseVideoContainer videoPanel;
+    private BaseCloneableVideoContainer videoPanel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class MainActivity extends FragmentActivity {
         tv = (TextView) findViewById(R.id.tv);
         btn = (Button) findViewById(R.id.btn);
         videoOverlay = (VideoOverlay) findViewById(R.id.video_overlay);
-        videoPanel = (BaseVideoContainer) findViewById(R.id.video_panel);
+        videoPanel = (BaseCloneableVideoContainer) findViewById(R.id.video_panel);
 
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -47,9 +47,9 @@ public class MainActivity extends FragmentActivity {
                 videoOverlay.toggleOrientation();
             }
         });
-        baseVideoContainer = (BaseVideoContainer) findViewById(R.id.video_panel);
+        cloneableVideoContainer = (BaseCloneableVideoContainer) findViewById(R.id.video_panel);
         cloneView = (CloneView) findViewById(R.id.clone_view);
 
-        cloneView.attachCloneableView(baseVideoContainer);
+        cloneView.attachCloneableView(cloneableVideoContainer);
     }
 }

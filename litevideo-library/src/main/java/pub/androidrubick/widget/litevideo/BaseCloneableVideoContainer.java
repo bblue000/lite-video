@@ -11,30 +11,28 @@ import android.widget.FrameLayout;
 
 /**
  * A base view group ({@link FrameLayout}) that implements
- * {@link CloneView.CloneableView}、{@link VideoContainer}。
+ * {@link CloneView.CloneableView}、{@link CloneableVideoContainer}。
  *
  * <p>
  * Created by Yin Yong on 2017/5/31.
  */
-public abstract class BaseVideoContainer extends FrameLayout
-        implements CloneView.CloneableView, VideoContainer {
+public class BaseCloneableVideoContainer extends FrameLayout
+        implements CloneableVideoContainer {
 
     private final CloneableViewDispatcher mCloneableViewDispatcher;
-    public BaseVideoContainer(Context context) {
+    public BaseCloneableVideoContainer(Context context) {
         this(context, null);
     }
 
-    public BaseVideoContainer(Context context, AttributeSet attrs) {
+    public BaseCloneableVideoContainer(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BaseVideoContainer(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BaseCloneableVideoContainer(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         mCloneableViewDispatcher = new CloneableViewDispatcher(this);
     }
-
-    public abstract boolean isCloneState() ;
 
     @Override
     public CloneableViewDispatcher getCloneableViewDispatcher() {

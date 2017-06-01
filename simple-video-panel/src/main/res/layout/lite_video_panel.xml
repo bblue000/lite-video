@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <pub.androidrubick.litevideo.widget.ScalableLayout
+    <pub.androidrubick.litevideo.panel.ScalableLayout
         android:id="@+id/sdk_pandora_video_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             />
 
-    </pub.androidrubick.litevideo.widget.ScalableLayout>
+    </pub.androidrubick.litevideo.panel.ScalableLayout>
 
     <View
         android:id="@+id/sdk_pandora_video_bg_v"
@@ -87,7 +87,7 @@
                 android:layout_marginRight="@dimen/lite_videobar_hpadding"
                 android:text="00:00" />
 
-            <pub.androidrubick.litevideo.widget.WormSeekBar
+            <pub.androidrubick.litevideo.panel.WormSeekBar
                 android:id="@+id/sdk_pandora_videobar_slider"
                 style="@style/LiteVideo.VideoControl.SeekBar"
                 android:layout_toRightOf="@+id/sdk_pandora_videobar_current_time_tv"

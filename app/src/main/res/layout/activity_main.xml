@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <pub.androidrubick.widget.litevideo.BaseVideoContainer
+        <pub.androidrubick.widget.litevideo.BaseCloneableVideoContainer
             android:id="@+id/video_panel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -40,7 +40,7 @@
                     android:text="测试"
                     />
             </LinearLayout>
-        </pub.androidrubick.widget.litevideo.BaseVideoContainer>
+        </pub.androidrubick.widget.litevideo.BaseCloneableVideoContainer>
 
     </pub.androidrubick.widget.litevideo.VideoOverlay>
 

@@ -50,7 +50,13 @@ public class VideoOverlay extends FrameLayout {
     private final Rect mTmpFullRect = new Rect();
     private final Rect mTmpSidesAlignRect = new Rect();
 
-    private VideoContainer mVideoContainer;
+    private CloneableVideoContainer mVideoContainer;
+    private CloneableViewDispatcher.CloneStateProvider mCloneStateProvider = new CloneableViewDispatcher.CloneStateProvider() {
+        @Override
+        public boolean isCloneState() {
+            return landscapeOrTransformState();
+        }
+    };
     /*package*/ VideoOverlay(Context context) {
         this(context, null);
     }
@@ -86,8 +92,11 @@ public class VideoOverlay extends FrameLayout {
             throw new IllegalStateException("`Only` one VideoViewContainer child should be inflated from layout");
         }
         View view = getChildAt(0);
-        if (view instanceof VideoContainer) {
-            mVideoContainer = (VideoContainer) view;
+        if (view instanceof BaseCloneableVideoContainer) {
+            BaseCloneableVideoContainer container = (BaseCloneableVideoContainer) view;
+            CloneableViewDispatcher dispatcher = container.getCloneableViewDispatcher();
+            dispatcher.setCloneStateProvider(mCloneStateProvider);
+            mVideoContainer = container;
         }
         if (null != mVideoContainer) {
             throw new IllegalStateException("no VideoViewContainer child inflated from layout");
