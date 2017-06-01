@@ -1,0 +1,76 @@
+// Definitions of release tasks.
+apply plugin: 'maven'
+//使用signing plugin做数字签名
+apply plugin: 'signing'
+
+rootProject.ext.LOCAL_REPO_URL = 'file://' + rootProject.file('local-repo')
+
+def isReleaseBuild() {
+    if (hasProperty('BUILD_RELEASE')) {
+        def buildRelease = property('BUILD_RELEASE')
+        return '1'.equals(buildRelease) || 'true'.equals(buildRelease)
+    }
+    def buildRelease = System.getProperty('BUILD_RELEASE')
+    return '1'.equals(buildRelease) || 'true'.equals(buildRelease)
+}
+
+def getRepositoryUrl() {
+    return isReleaseBuild() ? REPO_URL : LOCAL_REPO_URL
+}
+
+def getRepositoryUsername() {
+    return hasProperty('MVN_USER') ? property('MVN_USER') : "***"
+}
+
+def getRepositoryPassword() {
+    return hasProperty('MVN_PWD') ? property('MVN_PWD') : "***"
+}
+
+afterEvaluate { project ->
+    version = MAVEN_PROJECT_VERSION
+    group = MAVEN_PROJECT_GROUP
+
+    signing {
+        required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+        sign configurations.archives
+    }
+
+    uploadArchives {
+        configuration = configurations.archives
+
+        repositories.mavenDeployer {
+            beforeDeployment {
+                MavenDeployment deployment -> signing.signPom(deployment)
+            }
+
+            if (isReleaseBuild()) {
+                print "[${project.name}] build release"
+                repository(url: getRepositoryUrl()) {
+                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                }
+            } else {
+                print "[${project.name}] build local"
+                repository(url: getRepositoryUrl())
+            }
+
+            println " version<${MAVEN_PROJECT_VERSION}>"
+
+            pom.project {
+                name MAVEN_POM_NAME
+                artifactId MAVEN_POM_ARTIFACT_ID
+                packaging MAVEN_POM_PACKAGING
+                description "${MAVEN_POM_DESCRIPTION} [built at ${new Date().format('yyyyMMddHHmmssSSS')}]"
+                url 'https://github.com/bblue000'
+
+                developers {
+                    developer {
+                        id 'bblue000'
+                        name 'Yin Yong'
+                        email 'yy15151877621@126.com'
+                    }
+                }
+            }
+        }
+    }
+}
+

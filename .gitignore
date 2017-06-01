@@ -1,8 +1,9 @@
+
 # Built application files
 *.apk
 *.ap_
 
-# Files for the ART/Dalvik VM
+# Files for the Dalvik VM
 *.dex
 
 # Java class files
@@ -12,10 +13,23 @@
 bin/
 gen/
 out/
+*/bin/
+*/gen/
+*/out/
+
 
 # Gradle files
 .gradle/
+gradle/
 build/
+.idea/
+*/.gradle/
+*/gradle/
+*/build/
+*/.idea/
+*.iml
+gradlew
+gradlew.bat
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -53,3 +67,13 @@ google-services.json
 freeline.py
 freeline/
 freeline_project_description.json
+
+# windows
+Thumbs.db
+
+# mac
+._.DS_Store
+.DS_Store
+
+# git
+.gitignore
