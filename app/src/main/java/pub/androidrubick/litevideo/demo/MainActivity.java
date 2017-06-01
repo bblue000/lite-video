@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import pub.androidrubick.litevideo.BaseVideoContainer;
-import pub.androidrubick.litevideo.CloneView;
-import pub.androidrubick.litevideo.VideoOverlay;
+import pub.androidrubick.litevideo.widget.BaseVideoContainer;
+import pub.androidrubick.litevideo.widget.CloneView;
+import pub.androidrubick.litevideo.widget.VideoOverlay;
 
 /**
  * {@doc}

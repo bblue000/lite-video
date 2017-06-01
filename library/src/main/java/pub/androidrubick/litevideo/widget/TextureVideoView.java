@@ -1,4 +1,4 @@
-package pub.androidrubick.litevideo;
+package pub.androidrubick.litevideo.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;

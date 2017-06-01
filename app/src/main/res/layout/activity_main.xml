@@ -3,19 +3,19 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <pub.androidrubick.litevideo.CloneView
+    <pub.androidrubick.litevideo.widget.CloneView
         android:id="@+id/clone_view"
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_gravity="left|top"
         android:background="#ff0"/>
 
-    <pub.androidrubick.litevideo.VideoOverlay
+    <pub.androidrubick.litevideo.widget.VideoOverlay
         android:id="@+id/video_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <pub.androidrubick.litevideo.BaseVideoContainer
+        <pub.androidrubick.litevideo.widget.BaseVideoContainer
             android:id="@+id/video_panel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -40,8 +40,8 @@
                     android:text="测试"
                     />
             </LinearLayout>
-        </pub.androidrubick.litevideo.BaseVideoContainer>
+        </pub.androidrubick.litevideo.widget.BaseVideoContainer>
 
-    </pub.androidrubick.litevideo.VideoOverlay>
+    </pub.androidrubick.litevideo.widget.VideoOverlay>
 
 </FrameLayout>

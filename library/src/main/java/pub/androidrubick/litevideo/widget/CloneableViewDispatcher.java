@@ -1,4 +1,4 @@
-package pub.androidrubick.litevideo;
+package pub.androidrubick.litevideo.widget;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 /**
- * A {@link pub.androidrubick.litevideo.CloneView.CloneableView} as below:
+ * A {@link CloneView.CloneableView} as below:
  *
  * <pre>
  *  public class CustomView extends FrameLayout implements CloneView.CloneableView {

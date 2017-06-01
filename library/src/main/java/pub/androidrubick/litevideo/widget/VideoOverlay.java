@@ -1,4 +1,4 @@
-package pub.androidrubick.litevideo;
+package pub.androidrubick.litevideo.widget;
 
 import android.app.Activity;
 import android.content.Context;
@@ -50,7 +50,7 @@ public class VideoOverlay extends FrameLayout {
     private final Rect mTmpFullRect = new Rect();
     private final Rect mTmpSidesAlignRect = new Rect();
 
-    private VideoViewContainer mVideoViewContainer;
+    private VideoContainer mVideoContainer;
     /*package*/ VideoOverlay(Context context) {
         this(context, null);
     }
@@ -86,10 +86,10 @@ public class VideoOverlay extends FrameLayout {
             throw new IllegalStateException("`Only` one VideoViewContainer child should be inflated from layout");
         }
         View view = getChildAt(0);
-        if (view instanceof VideoViewContainer) {
-            mVideoViewContainer = (VideoViewContainer) view;
+        if (view instanceof VideoContainer) {
+            mVideoContainer = (VideoContainer) view;
         }
-        if (null != mVideoViewContainer) {
+        if (null != mVideoContainer) {
             throw new IllegalStateException("no VideoViewContainer child inflated from layout");
         }
     }
@@ -112,8 +112,8 @@ public class VideoOverlay extends FrameLayout {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         } else {
             // clear
-            View view = mVideoViewContainer.asViewGroup();
-            View alignView = mVideoViewContainer.getSidesAlignView();
+            View view = mVideoContainer.asViewGroup();
+            View alignView = mVideoContainer.getSidesAlignView();
             LayoutParams lp = (LayoutParams) view.getLayoutParams();
             lp.width = LayoutParams.MATCH_PARENT;
             lp.height = LayoutParams.MATCH_PARENT;
@@ -149,7 +149,7 @@ public class VideoOverlay extends FrameLayout {
 
         int offsetX = mTmpSidesAlignRect.left - mTmpFullRect.left;
         int offsetY = mTmpSidesAlignRect.top - mTmpFullRect.top;
-        View view = mVideoViewContainer.asViewGroup();
+        View view = mVideoContainer.asViewGroup();
         view.layout(offsetX, offsetY, offsetX + mTmpSidesAlignRect.width(), offsetY + mTmpSidesAlignRect.height());
 
         LayoutParams lp = (LayoutParams) view.getLayoutParams();
@@ -273,7 +273,7 @@ public class VideoOverlay extends FrameLayout {
     // 还是正常情况下的对外公开的View的大小
     private Rect getNormalScreenRect(Rect rect) {
         if (null == rect) rect = new Rect();
-        getRectOfView(mVideoViewContainer.getSidesAlignView(), rect);
+        getRectOfView(mVideoContainer.getSidesAlignView(), rect);
         return rect;
     }
 
@@ -312,7 +312,7 @@ public class VideoOverlay extends FrameLayout {
             initIfNeeded();
 
             // 以FakeDecorContentLayout顶点作为坐标
-            View child = mVideoViewContainer.asViewGroup();
+            View child = mVideoContainer.asViewGroup();
             float width = (fromW + (toW - fromW) * interpolatedTime);
             float height = (fromH + (toH - fromH) * interpolatedTime);
             ViewGroup.LayoutParams lp = child.getLayoutParams();
@@ -381,13 +381,13 @@ public class VideoOverlay extends FrameLayout {
 
         private int mRawLayerType;
         private void prepareForAnimation() {
-            View view = mVideoViewContainer.asViewGroup();
+            View view = mVideoContainer.asViewGroup();
             mRawLayerType = view.getLayerType();
             view.setLayerType(LAYER_TYPE_HARDWARE, null);
         }
 
         private void endForAnimation() {
-            View view = mVideoViewContainer.asViewGroup();
+            View view = mVideoContainer.asViewGroup();
             view.setLayerType(mRawLayerType, null);
         }
 

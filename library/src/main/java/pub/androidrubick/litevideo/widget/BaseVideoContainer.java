@@ -1,4 +1,4 @@
-package pub.androidrubick.litevideo;
+package pub.androidrubick.litevideo.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +15,7 @@ import android.widget.FrameLayout;
  * Created by Yin Yong on 2017/5/31.
  */
 public class BaseVideoContainer extends FrameLayout
-        implements CloneView.CloneableView, VideoViewContainer {
+        implements CloneView.CloneableView, VideoContainer {
 
     private final CloneableViewDispatcher mCloneableViewDispatcher;
     public BaseVideoContainer(Context context) {
