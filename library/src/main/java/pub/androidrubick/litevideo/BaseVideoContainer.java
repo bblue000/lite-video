@@ -5,6 +5,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 /**
@@ -12,18 +14,19 @@ import android.widget.FrameLayout;
  * <p>
  * Created by Yin Yong on 2017/5/31.
  */
-public class VideoPanel extends FrameLayout implements CloneView.CloneableView {
+public class BaseVideoContainer extends FrameLayout
+        implements CloneView.CloneableView, VideoViewContainer {
 
-    private CloneableViewDispatcher mCloneableViewDispatcher;
-    public VideoPanel(Context context) {
+    private final CloneableViewDispatcher mCloneableViewDispatcher;
+    public BaseVideoContainer(Context context) {
         this(context, null);
     }
 
-    public VideoPanel(Context context, AttributeSet attrs) {
+    public BaseVideoContainer(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public VideoPanel(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BaseVideoContainer(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         mCloneableViewDispatcher = new CloneableViewDispatcher(this);
@@ -88,5 +91,15 @@ public class VideoPanel extends FrameLayout implements CloneView.CloneableView {
     @Override
     public void superRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
         super.requestDisallowInterceptTouchEvent(disallowIntercept);
+    }
+
+    @Override
+    public ViewGroup asViewGroup() {
+        return this;
+    }
+
+    @Override
+    public View getSidesAlignView() {
+        return mCloneableViewDispatcher.getCurrentCloneView();
     }
 }

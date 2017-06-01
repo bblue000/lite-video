@@ -95,21 +95,16 @@ import android.view.ViewParent;
  * Created by Yin Yong on 2017/5/27.
  */
 public class CloneableViewDispatcher {
-    public enum SizeAlign {
-        None,
-        TargetView,
-        CloneView
-    }
 
-    private final CloneView.CloneableView mTargetView;
+    private final CloneView.CloneableView mSrcView;
     private View mCloneView;
     private boolean mForceClone;
 
-    public CloneableViewDispatcher(CloneView.CloneableView targetView) {
-        if (null == targetView) {
+    public CloneableViewDispatcher(CloneView.CloneableView srcView) {
+        if (null == srcView) {
             throw new NullPointerException();
         }
-        mTargetView = targetView;
+        mSrcView = srcView;
     }
 
     // 如果本身绘制，会调用该方法，内部会调用dispatchDraw
@@ -119,7 +114,7 @@ public class CloneableViewDispatcher {
      */
     public void draw(Canvas canvas) {
         if (isCloneState() || mForceClone) {
-            mTargetView.superDraw(canvas);
+            mSrcView.superDraw(canvas);
         }
     }
 
@@ -130,7 +125,7 @@ public class CloneableViewDispatcher {
      */
     public void dispatchDraw(Canvas canvas) {
         if (isCloneState() || mForceClone) {
-            mTargetView.superDispatchDraw(canvas);
+            mSrcView.superDispatchDraw(canvas);
         }
     }
 
@@ -142,7 +137,7 @@ public class CloneableViewDispatcher {
      */
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (isCloneState() || mForceClone) {
-            return mTargetView.superOnInterceptTouchEvent(ev);
+            return mSrcView.superOnInterceptTouchEvent(ev);
         }
         return false;
     }
@@ -153,7 +148,7 @@ public class CloneableViewDispatcher {
      */
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (isCloneState() || mForceClone) {
-            return mTargetView.superDispatchTouchEvent(ev);
+            return mSrcView.superDispatchTouchEvent(ev);
         }
         return false;
     }
@@ -168,7 +163,7 @@ public class CloneableViewDispatcher {
      */
     public void requestDisallowInterceptTouchEvent(boolean disallowIntercept) {
         if (isCloneState()) {
-            mTargetView.superRequestDisallowInterceptTouchEvent(disallowIntercept);
+            mSrcView.superRequestDisallowInterceptTouchEvent(disallowIntercept);
         } else {
             if (null != mCloneView) {
                 ViewParent parent = mCloneView.getParent();
@@ -179,12 +174,16 @@ public class CloneableViewDispatcher {
         }
     }
 
+    public View getCurrentCloneView() {
+        return mCloneView;
+    }
+
     /*package*/ void setCloneView(CloneView cloneView) {
         mCloneView = cloneView;
     }
 
     /*package*/ boolean isCloneState() {
-        return mTargetView.isCloneState();
+        return mSrcView.isCloneState();
     }
 
     /*package*/ void setForceClone(boolean cloneable) {

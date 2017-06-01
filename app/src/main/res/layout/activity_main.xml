@@ -3,34 +3,45 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <pub.androidrubick.litevideo.VideoPanel
-        android:id="@+id/video_panel"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="left|top">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/btn"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="测试"
-                />
-        </LinearLayout>
-    </pub.androidrubick.litevideo.VideoPanel>
-
     <pub.androidrubick.litevideo.CloneView
         android:id="@+id/clone_view"
         android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="right|bottom"/>
+        android:layout_height="200dp"
+        android:layout_gravity="left|top"
+        android:background="#ff0"/>
+
+    <pub.androidrubick.litevideo.VideoOverlay
+        android:id="@+id/video_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <pub.androidrubick.litevideo.BaseVideoContainer
+            android:id="@+id/video_panel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|top"
+            android:background="#33ff0000">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btn"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="测试"
+                    />
+            </LinearLayout>
+        </pub.androidrubick.litevideo.BaseVideoContainer>
+
+    </pub.androidrubick.litevideo.VideoOverlay>
 
 </FrameLayout>

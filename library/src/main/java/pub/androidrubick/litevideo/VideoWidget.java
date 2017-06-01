@@ -1,4 +1,4 @@
-package pub.androidrubick.litevideo.view;
+package pub.androidrubick.litevideo;
 
 import android.media.MediaPlayer;
 import android.view.View;
