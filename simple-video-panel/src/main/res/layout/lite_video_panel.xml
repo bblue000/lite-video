@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <pub.androidrubick.litevideo.widget.ScalableLayout
+        android:id="@+id/sdk_pandora_video_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <pub.androidrubick.widget.litevideo.TextureVideoView
+            android:id="@+id/sdk_pandora_video_v"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </pub.androidrubick.litevideo.widget.ScalableLayout>
+
+    <View
+        android:id="@+id/sdk_pandora_video_bg_v"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lite_video_def_cover_bg"
+        />
+
+    <FrameLayout
+        android:id="@+id/sdk_pandora_video_cover_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:id="@+id/sdk_pandora_video_cover_iv"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"/>
+
+        <!--<View-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:background="#4d000000"-->
+        <!--/>-->
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/sdk_pandora_video_overlay_play_iv"
+        style="@style/LiteVideo.VideoIcon"
+        android:layout_centerInParent="true"
+        />
+
+    <ProgressBar
+        android:id="@+id/sdk_pandora_video_overlay_loading_pb"
+        style="@style/LiteVideo.VideoIcon.Progress"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/sdk_pandora_video_control_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:id="@+id/sdk_pandora_video_seek_control_layout"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/lite_videobar_hpadding_narrow"
+            android:paddingRight="@dimen/lite_videobar_hpadding_narrow"
+            android:paddingTop="@dimen/lite_videobar_vpadding"
+            android:paddingBottom="@dimen/lite_videobar_vpadding"
+            android:background="@drawable/lite_videobar_bg">
+
+            <ImageView
+                android:id="@+id/sdk_pandora_videobar_play_pause_iv"
+                style="@style/LiteVideo.VideoControl.Icon"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:id="@+id/sdk_pandora_videobar_current_time_tv"
+                style="@style/LiteVideo.VideoControl.Time.Current"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/sdk_pandora_videobar_play_pause_iv"
+                android:layout_marginLeft="@dimen/lite_videobar_hpadding_narrow"
+                android:layout_marginRight="@dimen/lite_videobar_hpadding"
+                android:text="00:00" />
+
+            <pub.androidrubick.litevideo.widget.WormSeekBar
+                android:id="@+id/sdk_pandora_videobar_slider"
+                style="@style/LiteVideo.VideoControl.SeekBar"
+                android:layout_toRightOf="@+id/sdk_pandora_videobar_current_time_tv"
+                android:layout_toLeftOf="@+id/sdk_pandora_videobar_total_time_tv"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/sdk_pandora_videobar_total_time_tv"
+                style="@style/LiteVideo.VideoControl.Time.Total"
+                android:layout_marginLeft="@dimen/lite_videobar_hpadding"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:text="00:00" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/lite_videobar_hpadding_narrow">
+
+                <ImageView
+                    android:id="@+id/sdk_pandora_videobar_fullscreen_iv"
+                    style="@style/LiteVideo.VideoControl.Icon"
+                    />
+
+                <View
+                    android:layout_width="@dimen/lite_videobar_hpadding"
+                    android:layout_height="1dp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

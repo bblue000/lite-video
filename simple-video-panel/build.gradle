@@ -3,9 +3,8 @@ apply from: rootProject.file('pub.androidrubick.common.module.gradle')
 
 android {
     defaultConfig {
-        applicationId "pub.androidrubick.litevideo.demo"
-        versionCode 1
-        versionName "1.0"
+        versionCode MAVEN_PROJECT_VERSION_CODE as int
+        versionName MAVEN_PROJECT_VERSION
     }
     buildTypes {
         release {
@@ -16,8 +15,5 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile project(':litevideo-library')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 }

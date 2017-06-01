@@ -1,1 +1,1 @@
-include ':app', ':library'
+include ':app', ':litevideo-library', ':simple-video-panel'

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="lite_video_fullscreen_bg">@color/lite_video_def_cover_bg</color>
+    <color name="lite_video_def_cover_bg">#ff000000</color>
+    <dimen name="lite_video_overlay_icon_size">60dp</dimen>
+
+    <!-- seek control colors, dimens -->
+    <color name="lite_videobar_curtime_textcolor">#ffffffff</color>
+    <color name="lite_videobar_totaltime_textcolor">#ff98989f</color>
+    <drawable name="lite_videobar_bg">#a6191d26</drawable>
+    <color name="lite_videobar_slider_track_bg">#ff98989f</color>
+    <color name="lite_videobar_slider_track_progress">#ffde3d96</color>
+    <color name="lite_videobar_slider_track_secprogress">#ff98989f</color>
+
+    <dimen name="lite_videobar_height">25dp</dimen>
+    <dimen name="lite_videobar_maxheight">@dimen/lite_videobar_height</dimen>
+    <dimen name="lite_videobar_slider_track_height">1.5dp</dimen>
+    <dimen name="lite_videobar_slider_track_conner">2dp</dimen>
+    <dimen name="lite_videobar_time_label_textsize">12sp</dimen>
+    <dimen name="lite_videobar_hpadding">10dp</dimen>
+    <dimen name="lite_videobar_hpadding_narrow">0dp</dimen>
+    <dimen name="lite_videobar_vpadding">5dp</dimen>
+    <dimen name="lite_videobar_slider_spacing">8dp</dimen>
+
+    <!-- style start -->
+    <style name="LiteVideo"/>
+
+    <style name="LiteVideo.Base"/>
+
+    <style name="LiteVideo.Base.VideoIcon">
+        <item name="android:layout_width">@dimen/lite_video_overlay_icon_size</item>
+        <item name="android:layout_height">@dimen/lite_video_overlay_icon_size</item>
+    </style>
+    <style name="LiteVideo.Base.VideoIcon.Progress" parent="android:Widget.ProgressBar">
+        <item name="android:layout_width">@dimen/lite_video_overlay_icon_size</item>
+        <item name="android:layout_height">@dimen/lite_video_overlay_icon_size</item>
+        <item name="android:indeterminateDrawable">@drawable/lite_video_progress</item>
+    </style>
+
+    <style name="LiteVideo.Base.VideoControl"/>
+    <style name="LiteVideo.Base.VideoControl.Icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxHeight">@dimen/lite_videobar_maxheight</item>
+        <item name="android:layout_centerVertical">true</item>
+        <!--<item name="android:src">@drawable/ic_vs_pandora_videobar_play</item>-->
+    </style>
+
+    <style name="LiteVideo.Base.VideoControl.SeekBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:paddingLeft">@dimen/lite_videobar_slider_spacing</item>
+        <item name="android:paddingRight">@dimen/lite_videobar_slider_spacing</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">@dimen/lite_videobar_slider_spacing</item>
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">@dimen/lite_videobar_slider_spacing</item>
+
+        <item name="android:clickable">true</item>
+        <item name="android:splitTrack" tools:targetApi="lollipop">false</item>
+        <item name="android:thumb">@drawable/lite_videobar_slider_thumb</item>
+        <item name="android:progressDrawable">@drawable/lite_videobar_slider_track</item>
+        <item name="android:thumbOffset">@dimen/lite_videobar_slider_spacing</item>
+        <item name="android:minHeight">@dimen/lite_videobar_slider_track_height</item>
+        <item name="android:maxHeight">@dimen/lite_videobar_slider_track_height</item>
+        <item name="android:max">100</item>
+
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">@drawable/lite_videobar_slider_track</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="LiteVideo.Base.VideoControl.Time">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/lite_videobar_time_label_textsize</item>
+    </style>
+    <style name="LiteVideo.Base.VideoControl.Time.Current">
+        <item name="android:textColor">@color/lite_videobar_curtime_textcolor</item>
+    </style>
+
+    <style name="LiteVideo.Base.VideoControl.Time.Total">
+        <item name="android:textColor">@color/lite_videobar_totaltime_textcolor</item>
+    </style>
+
+
+    <style name="LiteVideo.VideoIcon" parent="LiteVideo.Base.VideoIcon"/>
+    <style name="LiteVideo.VideoIcon.Progress" parent="LiteVideo.Base.VideoIcon.Progress"/>
+    <style name="LiteVideo.VideoControl" parent="LiteVideo.Base.VideoControl"/>
+    <style name="LiteVideo.VideoControl.Icon" parent="LiteVideo.Base.VideoControl.Icon"/>
+    <style name="LiteVideo.VideoControl.SeekBar" parent="LiteVideo.Base.VideoControl.SeekBar"/>
+    <style name="LiteVideo.VideoControl.Time" parent="LiteVideo.Base.VideoControl.Time"/>
+    <style name="LiteVideo.VideoControl.Time.Current" parent="LiteVideo.Base.VideoControl.Time.Current"/>
+    <style name="LiteVideo.VideoControl.Time.Total" parent="LiteVideo.Base.VideoControl.Time.Total"/>
+</resources>
