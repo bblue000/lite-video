@@ -1,6 +1,5 @@
 package pub.androidrubick.widget.litevideo;
 
-import android.view.View;
 import android.view.ViewGroup;
 
 /**
@@ -9,10 +8,8 @@ import android.view.ViewGroup;
  * <p>
  * Created by Yin Yong on 2017/6/1.
  */
-/*package*/ interface CloneableVideoContainer extends CloneView.CloneableView {
+/*package*/ interface CloneableVideoContainer extends CloneableView {
 
     ViewGroup asViewGroup() ;
-
-    View getSidesAlignView() ;
 
 }

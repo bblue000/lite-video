@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 
 /**
  * A base view group ({@link FrameLayout}) that implements
- * {@link CloneView.CloneableView}、{@link CloneableVideoContainer}。
+ * {@link CloneableView}、{@link CloneableVideoContainer}。
  *
  * <p>
  * Created by Yin Yong on 2017/5/31.
@@ -97,6 +97,7 @@ public class BaseCloneableVideoContainer extends FrameLayout
 
     @Override
     public View getSidesAlignView() {
-        return mCloneableViewDispatcher.getCurrentCloneView();
+        View view = mCloneableViewDispatcher.getCurrentCloneView();
+        return null == view ? this : view;
     }
 }

@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 /**
- * A {@link CloneView.CloneableView} as below:
+ * A {@link CloneableView} as below:
  *
  * <pre>
- *  public class CustomView extends FrameLayout implements CloneView.CloneableView {
+ *  public class CustomView extends FrameLayout implements CloneableView {
  *
  *      private CloneableViewDispatcher mCloneableViewDispatcher;
  *      public CustomView(Context context) {
@@ -96,11 +96,11 @@ import android.view.ViewParent;
  */
 public class CloneableViewDispatcher {
 
-    private final CloneView.CloneableView mSrcView;
-    private View mCloneView;
+    private final CloneableView mSrcView;
+    private CloneView mCloneView;
     private boolean mForceClone;
 
-    public CloneableViewDispatcher(CloneView.CloneableView srcView) {
+    public CloneableViewDispatcher(CloneableView srcView) {
         if (null == srcView) {
             throw new NullPointerException();
         }
@@ -109,7 +109,7 @@ public class CloneableViewDispatcher {
 
     // 如果本身绘制，会调用该方法，内部会调用dispatchDraw
     /**
-     * A {@link CloneView.CloneableView} should dispatch
+     * A {@link CloneableView} should dispatch
      * {@link View#draw(Canvas) view's draw(Canvas)} method to this;
      */
     public void draw(Canvas canvas) {
@@ -120,7 +120,7 @@ public class CloneableViewDispatcher {
 
     // 如果本身不绘制，会直接调用该方法
     /**
-     * A {@link CloneView.CloneableView} should dispatch
+     * A {@link CloneableView} should dispatch
      * {@link View#dispatchDraw(Canvas) view's dispatchDraw(Canvas)} method to this;
      */
     public void dispatchDraw(Canvas canvas) {
@@ -130,7 +130,7 @@ public class CloneableViewDispatcher {
     }
 
     /**
-     * if {@link CloneView.CloneableView target} is a view, ignore this;
+     * if {@link CloneableView target} is a view, ignore this;
      *
      * if it is a view group, dispatch {@link android.view.ViewGroup#onInterceptTouchEvent(MotionEvent)}
      * to this method.
@@ -143,7 +143,7 @@ public class CloneableViewDispatcher {
     }
 
     /**
-     * A {@link CloneView.CloneableView} should dispatch
+     * A {@link CloneableView} should dispatch
      * {@link View#dispatchTouchEvent(MotionEvent) view's dispatchTouchEvent(MotionEvent)} method to this;
      */
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -156,7 +156,7 @@ public class CloneableViewDispatcher {
     // 对于外部一些容器，如ScrollView，ViewPager等，需要在一定的条件下，阻止其捕获事件。
     // 如果是竖屏状态，将相应的request传送给mCopyDrawingView
     /**
-     * if {@link CloneView.CloneableView} is a view, ignore this;
+     * if {@link CloneableView} is a view, ignore this;
      *
      * if it is a view group, dispatch {@link ViewGroup#requestDisallowInterceptTouchEvent(boolean)}
      * to this method.
@@ -174,14 +174,25 @@ public class CloneableViewDispatcher {
         }
     }
 
+    /**
+     * attach this dispatcher to a specific {@link CloneView}
+     */
+    public void attachToCloneView(CloneView cloneView) {
+        if (null != mCloneView) {
+            mCloneView.attachDispatcher(null);
+        }
+
+        if (null != cloneView) {
+            cloneView.attachDispatcher(this);
+            mCloneView = cloneView;
+        }
+    }
+
     public View getCurrentCloneView() {
         return mCloneView;
     }
 
-    /*package*/ void setCloneView(CloneView cloneView) {
-        mCloneView = cloneView;
-    }
-
+    // internal
     /*package*/ interface CloneStateProvider {
         boolean isCloneState() ;
     }
@@ -192,7 +203,7 @@ public class CloneableViewDispatcher {
     }
 
     /*package*/ boolean isCloneState() {
-        return null == mCloneStateProvider ? false : mCloneStateProvider.isCloneState();
+        return null != mCloneStateProvider && mCloneStateProvider.isCloneState();
     }
 
     /*package*/ void setForceClone(boolean cloneable) {
