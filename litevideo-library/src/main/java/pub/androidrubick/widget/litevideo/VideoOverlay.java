@@ -388,6 +388,7 @@ public class VideoOverlay extends FrameLayout {
             performOrientationChanged();
         }
 
+        // use hardware layers to improve animation performance
         private int mRawLayerType;
         private void prepareForAnimation() {
             View view = mVideoContainer.asViewGroup();

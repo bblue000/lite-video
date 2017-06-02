@@ -1,4 +1,4 @@
-package pub.androidrubick.litevideo.panel;
+package pub.androidrubick.litevideo.panel.widget;
 
 /**
  * 缩放类型
@@ -10,7 +10,9 @@ package pub.androidrubick.litevideo.panel;
 public enum ScaleType {
 
     /**
-     * 宽高缩放到所属视图的实际宽高
+     * 宽高缩放到所属视图的实际宽高;
+     *
+     * fit full area of target view.
      */
     FIT_XY,
 

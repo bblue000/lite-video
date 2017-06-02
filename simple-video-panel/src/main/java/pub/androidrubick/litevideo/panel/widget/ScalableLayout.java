@@ -1,4 +1,4 @@
-package pub.androidrubick.litevideo.panel;
+package pub.androidrubick.litevideo.panel.widget;
 
 import android.content.Context;
 import android.graphics.Rect;

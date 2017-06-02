@@ -50,6 +50,7 @@ public class MainActivity extends FragmentActivity {
         cloneableVideoContainer = (BaseCloneableVideoContainer) findViewById(R.id.video_panel);
         cloneView = (CloneView) findViewById(R.id.clone_view);
 
-        cloneView.attachCloneableView(cloneableVideoContainer);
+        cloneableVideoContainer.getCloneableViewDispatcher()
+                .attachToCloneView(cloneView);
     }
 }
